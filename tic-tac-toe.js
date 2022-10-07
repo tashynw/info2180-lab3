@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded',function(){
 
     //logic used to control match state
     var lastState = 'O';
-    const gameState = ['1','2','3','4','5','6','7','8','9'];
+    var gameState = ['1','2','3','4','5','6','7','8','9'];
     const winningCombination = [
         [0, 1, 2],
         [3, 4, 5],
@@ -64,5 +64,20 @@ window.addEventListener('DOMContentLoaded',function(){
         board.addEventListener('mouseleave',function(){
             board.classList.remove('hover')
         })
+    })
+    
+    //new game functionality
+    var button = document.getElementsByClassName('btn')[0];
+    button.addEventListener('click',function(){
+        boards.map((board,i)=>{
+            board.innerText = ''
+            board.classList.remove('O')
+            board.classList.remove('X')
+        })
+        var statusDiv = document.getElementById("status");
+        statusDiv.innerText = `Move your mouse over a square and click to play an X or an O.`;
+        statusDiv.classList.remove('you-won')
+        gameState = ['1','2','3','4','5','6','7','8','9'];
+        lastState = 'O';
     })
 })
