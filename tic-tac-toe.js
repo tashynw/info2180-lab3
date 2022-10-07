@@ -32,6 +32,14 @@ window.addEventListener('DOMContentLoaded',function(){
         var statusDiv = document.getElementById("status");
         statusDiv.innerText = `Congratulations! ${winner} is the Winner!`;
         statusDiv.classList.add('you-won')
+        
+        //preventing user from cheating
+        var boards = document.getElementsByClassName("square");
+        boards=[...boards]
+        boards.map((board,i)=>{
+            board.style.pointerEvents = 'none'
+            board.removeEventListener('click',function(){addInput(board,i)})
+        })
     }
 
     function addInput(board,i){
@@ -65,7 +73,7 @@ window.addEventListener('DOMContentLoaded',function(){
             board.classList.remove('hover')
         })
     })
-    
+
     //new game functionality
     var button = document.getElementsByClassName('btn')[0];
     button.addEventListener('click',function(){
@@ -73,6 +81,7 @@ window.addEventListener('DOMContentLoaded',function(){
             board.innerText = ''
             board.classList.remove('O')
             board.classList.remove('X')
+            board.style.pointerEvents = 'auto'
         })
         var statusDiv = document.getElementById("status");
         statusDiv.innerText = `Move your mouse over a square and click to play an X or an O.`;
